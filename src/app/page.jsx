@@ -2,10 +2,10 @@ import styles from "./home.module.css"
 import Image from "next/image";
 
 const Home = () => {
-  return <div className={styles.container}>\
+  return <div className={styles.container}>
     <div className={styles.textContainer}>
-      <h1>Creative Thoughts Agency.</h1>
-      <p>Lorem ipsumsahsdfasdjfahsdkjfhaldskjajdsl</p>
+      <h1 className={styles.title}>Creative Thoughts Agency.</h1>
+      <p className={styles.desc}>Lorem ipsumsahsdfasdjfahsdkjfhaldskjajdsl</p>
       <div className={styles.buttons}>
         <button className={styles.button}>Learn More</button>
         <button className={styles.button}>Contact</button>
