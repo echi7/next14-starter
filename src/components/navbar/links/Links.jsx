@@ -33,7 +33,7 @@ const Links = () => {
     return (
         <div className={styles.container}>
 
-        <div className={styles.lnks}>
+        <div className={styles.links}>
             {links.map((link=>(
                 <NavLink item={link} key={link.title}/>
             )))}{
@@ -47,7 +47,7 @@ const Links = () => {
                 )
             }
         </div>
-        <button onClick={()=>setOpen((prev) => !prev)}>Menu</button>
+        <button className={styles.menuButton} onClick={()=>setOpen((prev) => !prev)}>Menu</button>
         {open && (
             <div className={styles.mobileLinks}>
             {links.map((link) => (
