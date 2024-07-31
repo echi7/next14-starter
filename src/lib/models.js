@@ -50,3 +50,6 @@ const postSchema = new mongoose.Schema({
         uniqure: true,
     },
 }, {timestamps: true})
+
+export const User = mongoose.models.User || mongoose.model("User", userSchema);
+export const Post = mongoose.models.User || mongoose.model("User", postSchema);
