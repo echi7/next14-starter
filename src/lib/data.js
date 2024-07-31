@@ -15,9 +15,10 @@ export const getPosts = () => {
 };
 
 export const getPost = async (id) => {
-    return posts.find((post) => post.id === id);
+    const post = posts.find((post) => post.id === parseInt(id));
+    return post;
 };
 
 export const getUser = async (id) => {
-    return user.find((user) => user.id === id);
+    return users.find((user) => user.id === parseInt(id));
 };
