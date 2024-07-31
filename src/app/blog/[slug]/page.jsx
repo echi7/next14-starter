@@ -30,9 +30,9 @@ const SinglePostPage = () => {
                     <span className={styles.detailTitle}>Published</span>
                     <span className={styles.detailValue}>01.01.2024</span>
                 </div>
-            </div>
             <div className={styles.content}>
-                random sentence generated for this single post.
+            random sentence generated for this single post.
+            </div>
             </div>
         </div>
     )
