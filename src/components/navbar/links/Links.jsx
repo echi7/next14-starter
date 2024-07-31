@@ -2,6 +2,7 @@
 
 import styles from "./links.module.css"
 import NavLink from "./navLink/navLink";
+import Image from "next/image";
 import { useState } from "react";
 
 const links = [
@@ -26,7 +27,6 @@ const links = [
 const Links = () => {
     const [open,setOpen] = useState(false)
 
-    // TEMPORARY
     const session = true
     const isAdmin = true
 
@@ -47,7 +47,13 @@ const Links = () => {
                 )
             }
         </div>
-        <button className={styles.menuButton} onClick={()=>setOpen((prev) => !prev)}>Menu</button>
+            <Image className={styles.menuButton}
+            src="/menu.png"
+            alt=""
+            width={30}
+            height={30}
+            onClick={()=>setOpen((prev) => !prev)}
+            />
         {open && (
             <div className={styles.mobileLinks}>
             {links.map((link) => (
