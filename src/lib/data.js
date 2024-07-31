@@ -11,7 +11,7 @@ const posts = [
 ]
 
 export const getPosts = () => {
-
+    return posts;
 };
 
 export const getPost = async (id) => {
