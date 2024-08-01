@@ -27,7 +27,7 @@ const SinglePostPage = async ({params}) => {
             {post.img &&
             <div className={styles.imgContainer}>
                 <Image className={styles.img}
-                src="https://images.pexels.com/photos/13070618/pexels-photo-13070618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src={post.img}
                 alt=""
                 fill
                 />
@@ -35,19 +35,12 @@ const SinglePostPage = async ({params}) => {
                 <div className={styles.textContainer}>
                     <h1 className={styles.title}>{post?.title}</h1>
                     <div className={styles.detail}>
-                        <Image
-                        className={styles.avatar}
-                        src="https://images.pexels.com/photos/13070618/pexels-photo-13070618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                        alt=""
-                        width={50}
-                        height={50}
-                        />
-                        {/* {post && <Suspense fallback={<div>Loading...</div>}>
+                        {post && <Suspense fallback={<div>Loading...</div>}>
                         <PostUser userId={post.userId}/>
-                        </Suspense>} */}
+                        </Suspense>}
                 <div className={styles.detailText}>
                     <span className={styles.detailTitle}>Published</span>
-                    <span className={styles.detailValue}>01.01.2024</span>
+                    <span className={styles.detailValue}>{post.createdAt.toString().slice(4,16)}</span>
                 </div>
                 </div>
             <div className={styles.content}>
