@@ -13,6 +13,9 @@ export const addPost = async (formData) => {
             slug,
             userId,
         });
+
+        await newPost.save();
+        console.log("save to Db")
     } catch(error) {
         console.log('something went wrong')
         return {error: "something went wrong"}
