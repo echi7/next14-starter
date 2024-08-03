@@ -1,4 +1,5 @@
 import { connectToDb } from "./utils";
+import { Post } from "./models"
 
 export const addPost = async (formData) => {
     "use server"
