@@ -1,5 +1,6 @@
 import { connectToDb } from "./utils";
 import { Post } from "./models"
+import { revalidatePath } from "next/cache";
 
 export const addPost = async (formData) => {
     "use server"
@@ -16,6 +17,7 @@ export const addPost = async (formData) => {
         });
 
         await newPost.save();
+        revalidatePath("/blog")
         console.log("save to Db")
     } catch(error) {
         console.log('something went wrong')
