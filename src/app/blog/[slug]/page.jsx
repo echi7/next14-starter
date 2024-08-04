@@ -12,7 +12,7 @@ export const generateMetadata = async({params}) => {
         title: post.title,
         description: post.description,
     }
-  }
+}
 
 const SinglePostPage = async ({params}) => {
 
