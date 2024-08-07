@@ -7,7 +7,7 @@ import bcrypt from "bcrypt"
 import { authConfig } from "./auth.config"
 
 
-const login = async ({credentials}) => {
+const login = async (credentials) => {
     try{
         connectToDb();
         const user = await User.findOne({username: credentials.username});
@@ -68,7 +68,7 @@ export const { handlers:{GET, POST}, auth, signIn, signOut } = NextAuth({
                     return false
                 }
             }
-            return true
+            return true;
         },
         ...authConfig.callbacks,
     },

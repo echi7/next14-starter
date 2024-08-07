@@ -1,12 +1,13 @@
 "use server"
 
-import { connectToDb } from "./utils";
-import { Post, User } from "./models"
 import { revalidatePath } from "next/cache";
+import { Post, User } from "./models"
+import { connectToDb } from "./utils";
 import { signIn, signOut } from "./auth";
 import bcrypt from "bcrypt";
+import credentials from "next-auth/providers/credentials";
 
-export const addPost = async (formData) => {
+export const addPost = async (previousState, formData) => {
 
     const { title, desc, slug, userId } = Object.fromEntries(formData);
 
@@ -21,14 +22,13 @@ export const addPost = async (formData) => {
 
         await newPost.save();
         revalidatePath("/blog")
-        console.log("save to Db")
+        revalidatePath("/admin")
     } catch(error) {
         return {error: "something went wrong"}
     }
 };
 
 export const deletePost = async (formData) => {
-
     const { id } = Object.fromEntries(formData);
 
     try{
@@ -36,8 +36,42 @@ export const deletePost = async (formData) => {
         await Post.findByIdAndDelete(id);
         console.log("deleted from db")
         revalidatePath("/blog")
+        revalidatePath("/admin")
     } catch(error) {
         return {error: "something went wrong"}
+    }
+};
+
+export const addUser = async (prevState,formData) => {
+    const { username, email, password, img } = Object.fromEntries(formData);
+
+    try {
+        connectToDb();
+        const newUser = new User({
+        username,
+        email,
+        password,
+        img,
+    });
+
+    await newUser.save();
+    revalidatePath("/admin");
+    } catch (err) {
+    return { error: "Something went wrong!" };
+    }
+};
+
+export const deleteUser = async (formData) => {
+    const { id } = Object.fromEntries(formData);
+
+    try {
+        connectToDb();
+
+    await Post.deleteMany({ userId: id });
+    await User.findByIdAndDelete(id);
+    revalidatePath("/admin");
+    } catch (err) {
+    return { error: "Something went wrong!" };
     }
 };
 
@@ -85,11 +119,11 @@ export const register = async (previousState, formData) => {
 
 export const login = async (previousState, formData) => {
     const { username, password } = Object.fromEntries(formData);
+    console.log(username, password)
 
     try{
-        await signIn("credentials", {username, password})
+        await signIn("credentials", {username, password});
     } catch (err) {
-        console.log(err);
 
         if (err.message.includes("CredentialsSignin")) {
             return {error: "Invalid username or password"};
