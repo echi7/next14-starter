@@ -5,7 +5,6 @@ import { Post } from "./models"
 import { revalidatePath } from "next/cache";
 
 export const addPost = async (formData) => {
-    "use server"
 
     const { title, desc, slug, userId } = Object.fromEntries(formData);
 
